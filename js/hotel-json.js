@@ -27,6 +27,9 @@ $("input[type='button']").click(function(e) {
   var inputJson={};
   inputJson['name']="Rakeem"
   inputJson['checkin']="2021-11-15";
+  inputJson['checkout']="2021-11-30";
+  inputJson['numberofguests']="2";
+  inputJson['typeofroom']="grand suite";
   firebase.firestore().collection("hotellist").add(inputJson);
 
 
