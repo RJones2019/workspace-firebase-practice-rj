@@ -1,29 +1,33 @@
 var firebaseConfig = {
-  apiKey: "AIzaSyAzcwgZuLA7dO9g4sQhXQVTUgCo0M8m2qM",
-  authDomain: "grocerylist-91956.firebaseapp.com",
-  databaseURL: "https://grocerylist-91956.firebaseio.com",
-  projectId: "grocerylist-91956",
-  storageBucket: "grocerylist-91956.appspot.com",
-  messagingSenderId: "813812426276",
-  appId: "1:813812426276:web:93e5897af12892ff78dab1",
-  measurementId: "G-VZ83BTR72T"
+  apiKey: "AIzaSyBl7J7Wd1Zq6_oa10KIlBp7OO4R-K5ar-k",
+  authDomain: "csci225rj.firebaseapp.com",
+  projectId: "csci225rj",
+  storageBucket: "csci225rj.appspot.com",
+  messagingSenderId: "120469188494",
+  appId: "1:120469188494:web:7d80eaf13fd44518913edf",
+  measurementId: "G-N8W4M8HZVG"
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 /* object examples 
+*/
 var testJson = {};
 testJson["lastname"] = "zhang";
 testJson["location"] = "aiken";
 console.log(testJson);
-*/
+/**/
 
 // enter data in
 $("input[type='button']").click(function(e) {
   //get the value of form
-  
+  const inputdata=$("form").serializeArray();
+  console.log(inputdata);
   
   /* save the data to database */
-
+  var inputJson={};
+  inputJson['name']="Rakeem"
+  inputJson['checkin']="2021-11-15";
+  firebase.firestore().collection("hotellist").add(inputJson);
 
 
   /* clear the entry */
@@ -39,7 +43,7 @@ array1.forEach(element => console.log(element));
 
 firebase
   .firestore()
-  .collection("hoteldata")
+  .collection("hotellist")
   .onSnapshot(querySnapshot => {
     console.log(querySnapshot.size);
     querySnapshot.forEach(doc => {
