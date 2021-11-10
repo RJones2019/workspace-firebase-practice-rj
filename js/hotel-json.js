@@ -25,11 +25,12 @@ $("input[type='button']").click(function(e) {
   
   /* save the data to database */
   var inputJson={};
-  inputJson['name']="Rakeem"
-  inputJson['checkin']="2021-11-15";
-  inputJson['checkout']="2021-11-30";
-  inputJson['numberofguests']="2";
-  inputJson['typeofroom']="grand suite";
+  for(var i=0;i<inputdata.length;i++){
+    var n = inputdata[i]["name"];
+    var v = inputdata[i]["value"];
+    inputJson[n]=v;
+    console.log(n+' '+v);
+  }
   firebase.firestore().collection("hotellist").add(inputJson);
 
 
