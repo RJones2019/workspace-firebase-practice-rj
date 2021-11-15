@@ -41,7 +41,6 @@ $("#signup-form").submit(function(e) {
 //the other choice use google account
 $('#google').click(function(){
   console.log("Click google login method");
-
   var provider = new firebase.auth.GoogleAuthProvider();
   provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
   firebase.auth()
@@ -49,5 +48,7 @@ $('#google').click(function(){
   .then((result) => {
     /** @type {firebase.auth.OAuthCredential} */
     var credential = result.credential;
+    firebase.auth().signInWithRedirect(provider);
+
   });
 });
