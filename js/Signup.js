@@ -15,9 +15,9 @@ $("#signup-form").submit(function(e) {
   e.preventDefault();
   //get the username(email) and password from the form
   // change the following code
-  var email = $("#signup-form input [name='username']").val();
+  var email = $("#signup-form input[name='username']").val();
   console.log('email you typed is'+email);
-  var password = $("signup-form input [password='password']").val();
+  var password = $("signup-form input[password='password']").val();
 
   // create a user with email address and password
   firebase
