@@ -15,8 +15,11 @@ $("#Login").submit(function(e) {
   e.preventDefault();
   // get the user name and password from form
   // You need to change this. 
-  var email = "yilianz4@gmail.com";
-  var password = "ddsgagafda";
+  var email = $("#login-form input[name='login']").val();
+  console.log('email you typed is'+email);
+  var password = $("#login-form input[name='pwd']").val();
+  console.log(password);
+
   firebase
     .auth()
     .signInWithEmailAndPassword(email, password)
