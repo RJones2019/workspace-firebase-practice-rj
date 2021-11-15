@@ -38,3 +38,16 @@ $("#signup-form").submit(function(e) {
       console.log(errorMessage);
     });
 });
+//the other choice use google account
+$('#google').click(function(){
+  console.log("Click google login method");
+
+  var provider = new firebase.auth.GoogleAuthProvider();
+  provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
+  firebase.auth()
+  .signInWithPopup(provider)
+  .then((result) => {
+    /** @type {firebase.auth.OAuthCredential} */
+    var credential = result.credential;
+  });
+});
