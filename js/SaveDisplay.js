@@ -14,9 +14,10 @@ firebase.initializeApp(firebaseConfig);
 
 // save the data
 $(".sampleSurvey input[type='submit']").click(function(e) {
-  e.preventDefault();
-
-  var inputdata=$('.simpleSurvey').serializeArray();
+  e.preventDefault(); 
+  console.log("here");
+  var inputdata=$('.sampleSurvey').serializeArray();
+  console.log(inputdata);
   var inputJson={};
   inputdata.forEach((data)=>{
   console.log(data.name);
@@ -24,14 +25,27 @@ $(".sampleSurvey input[type='submit']").click(function(e) {
   inputJson[data.name]=data.value;
   });
 // save the data to database
-  for(var i=0;i<inputdata.length;i++){
-    var n = inputdata[i]["name"];
-    var v = inputdata[i]["value"];
-    inputJson[n]=v;
-    console.log(n+' '+v);
-  }
-  firebase.firestore().collection("surveydatabase").add(inputJson)
+
+firebase.firestore().collection("surveydatabase").add(inputJson);
 
 });
 // update the result in table
 
+firebase
+  .firestore()
+  .collection("surveydatabase")
+  .onSnapshot(querySnapshot => {
+    console.log(querySnapshot.size);
+    querySnapshot.forEach(doc => {
+      console.log(doc.data());
+      console.log(doc.data().choice);
+      console.log(doc.data().comm);
+    });
+    switch('choice'){
+      case 0: $(".ans1")+1;
+      case 1: $(".ans2")+1;
+      case 2: $(".ans3")+1;
+      case 3: $(".ans4")+1;
+      case 4: $(".ans5")+1;
+    }
+  });
