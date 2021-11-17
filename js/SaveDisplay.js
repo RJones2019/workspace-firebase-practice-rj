@@ -17,21 +17,21 @@ $(".sampleSurvey input[type='submit']").click(function(e) {
   e.preventDefault();
 
   var inputdata=$('.simpleSurvey').serializeArray();
+  var inputJson={};
   inputdata.forEach((data)=>{
   console.log(data.name);
   console.log(data.value);
-
-
-var inputJson={};
+  inputJson[data.name]=data.value;
+  });
+// save the data to database
   for(var i=0;i<inputdata.length;i++){
     var n = inputdata[i]["name"];
     var v = inputdata[i]["value"];
     inputJson[n]=v;
     console.log(n+' '+v);
   }
-  firebase.firestore().collection("surveydatabase").add(inputJson);
+  firebase.firestore().collection("surveydatabase").add(inputJson)
 
-});
 });
 // update the result in table
 
