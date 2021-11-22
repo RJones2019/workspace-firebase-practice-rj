@@ -28,7 +28,7 @@ $("#Login").submit(function(e) {
       // ...
       console.log("login in");
       let user = firebase.auth().currentUser;
-
+      
       //user.updateProfile({ displayName: "Not sure" });
       if (user != null) {
         name = user.displayName;
